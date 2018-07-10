@@ -3,12 +3,12 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import InventoryContainer from '../screens/InventoryContainer';
-import SellContainer from '../screens/SellContainer';
-import SoldContainer from '../screens/SoldContainer';
+import InventoryScreen from '../screens/InventoryScreen';
+import SellScreen from '../screens/SellScreen';
+import SoldScreen from '../screens/SoldScreen';
 
 const InventoryStack = createStackNavigator({
-  Inventory: InventoryContainer,
+  Inventory: InventoryScreen,
 });
 
 InventoryStack.navigationOptions = {
@@ -26,7 +26,7 @@ InventoryStack.navigationOptions = {
 };
 
 const SellStack = createStackNavigator({
-  Sell: SellContainer,
+  Sell: SellScreen,
 });
 
 SellStack.navigationOptions = {
@@ -40,7 +40,7 @@ SellStack.navigationOptions = {
 };
 
 const SoldStack = createStackNavigator({
-  Sold: SoldContainer,
+  Sold: SoldScreen,
 });
 
 SoldStack.navigationOptions = {

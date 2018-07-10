@@ -1,7 +1,7 @@
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
 
-export default class SoldContainer extends React.Component {
+export default class SoldScreen extends React.Component {
   static navigationOptions = {
     title: 'app.json',
   };
