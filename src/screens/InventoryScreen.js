@@ -1,14 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { Icon } from 'expo';
 
 import firebase from '../helpers/Firebase'
 import ListContainer from '../containers/ListContainer';
+import Colors from '../constants/Colors';
 
 const inventoryRef = firebase.database().ref('inventory');
 
 export default class InventoryScreen extends React.Component {
   static navigationOptions = {
     title: 'Inventory',
+    headerRight: (
+      <Icon.Ionicons
+        name='ios-create-outline'
+        size={30}
+        color={Colors.tintColor}
+        style={{marginRight: 15}}
+        onPress={() => alert('This is a button!')}
+      />
+    ),
   };
 
   constructor() {
@@ -16,6 +27,10 @@ export default class InventoryScreen extends React.Component {
     this.state = {
       items: [],
     }
+  }
+
+  onNewItemPressed() {
+    alert('This is a button!');
   }
 
   componentDidMount() {
