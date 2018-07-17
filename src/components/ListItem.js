@@ -9,7 +9,6 @@ export default class TabBarIcon extends React.Component {
       <View style={styles.stockPriceRow}>
         <Text>{this.props.item.stock} in stock</Text>
         <Text>${this.props.item.price}</Text>
-        <View style={styles.bottomLine}/>
       </View>
     );
   }
@@ -38,7 +37,8 @@ const styles = StyleSheet.create({
   item: {
     flex: 1,
     flexDirection: 'row',
-    padding: 20,
+    paddingTop: 25,
+    paddingHorizontal: 25,
   },
   placeholderImg: {
     width: 60,

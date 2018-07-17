@@ -29,10 +29,6 @@ export default class InventoryScreen extends React.Component {
     }
   }
 
-  onNewItemPressed() {
-    alert('This is a button!');
-  }
-
   componentDidMount() {
     inventoryRef.on('value', (snapshot) => {
       let items = snapshot.val();
