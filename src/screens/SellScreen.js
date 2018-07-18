@@ -33,7 +33,7 @@ export default class SellScreen extends React.Component {
 
         <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>2 items selected</Text>
-          <Button onPress={this.onCheckoutPressed} title='Checkout'/>
+          <Button title='Checkout' onPress={this.onCheckoutPressed} />
         </View> 
       </View>
     );

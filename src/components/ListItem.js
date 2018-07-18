@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
   item: {
     flex: 1,
     flexDirection: 'row',
-    paddingTop: 25,
-    paddingHorizontal: 25,
+    paddingTop: 20,
+    paddingHorizontal: 20,
   },
   placeholderImg: {
     width: 60,
