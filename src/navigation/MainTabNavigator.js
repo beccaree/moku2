@@ -4,11 +4,16 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import InventoryScreen from '../screens/InventoryScreen';
+import ItemFormScreen from '../screens/ItemFormScreen';
 import SellScreen from '../screens/SellScreen';
 import SoldScreen from '../screens/SoldScreen';
 
 const InventoryStack = createStackNavigator({
   Inventory: InventoryScreen,
+  ItemForm: ItemFormScreen,
+},
+{
+  initialRouteName: 'Inventory',
 });
 
 InventoryStack.navigationOptions = {

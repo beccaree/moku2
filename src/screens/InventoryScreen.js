@@ -9,17 +9,21 @@ import Colors from '../constants/Colors';
 const inventoryRef = firebase.database().ref('inventory');
 
 export default class InventoryScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Inventory',
-    headerRight: (
-      <Icon.Ionicons
-        name='ios-create-outline'
-        size={30}
-        color={Colors.tintColor}
-        style={{marginRight: 15}}
-        onPress={() => alert('This is a button!')}
-      />
-    ),
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Inventory',
+      headerRight: (
+        <Icon.Ionicons
+          name='ios-create-outline'
+          size={30}
+          color={Colors.tintColor}
+          style={{marginRight: 15}}
+          onPress={() => navigation.navigate('ItemForm', {
+              pageTitle: 'New Item',
+          })}
+        />
+      ),
+    };
   };
 
   constructor() {
