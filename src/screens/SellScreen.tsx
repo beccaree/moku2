@@ -6,17 +6,16 @@ import {
   Text,
   Button,
 } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
 
 import ListContainer from '../containers/ListContainer';
 
-export default class SellScreen extends React.Component {
+export default class SellScreen extends React.Component<any, any> {
   static navigationOptions = {
     title: 'Sell',
   };
 
-  constructor() {
-    super();
+  constructor(props: any) {
+    super(props);
     this.state = {
       items: [],
     }
@@ -50,17 +49,17 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
+    // ...Platform.select({
+    //   ios: {
+    //     shadowColor: 'black',
+    //     shadowOffset: { height: -3 },
+    //     shadowOpacity: 0.1,
+    //     shadowRadius: 3,
+    //   },
+    //   android: {
+    //     elevation: 20,
+    //   },
+    // }),
     alignItems: 'center',
     backgroundColor: '#fbfbfb',
     paddingVertical: 20,

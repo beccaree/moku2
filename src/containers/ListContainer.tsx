@@ -1,9 +1,14 @@
 import React from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView } from 'react-native';
 
 import ListItem from '../components/ListItem';
+import { Item } from '../domain/types';
 
-export default class ListContainer extends React.Component {
+type Props = {
+  items: Array<Item>,
+};
+
+export default class ListContainer extends React.Component<Props, any> {
   render() {
     return (
       <ScrollView>

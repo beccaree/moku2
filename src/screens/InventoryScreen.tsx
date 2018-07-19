@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Icon } from 'expo';
+import { Ionicons } from '@expo/vector-icons';
 
 import firebase from '../helpers/Firebase'
 import ListContainer from '../containers/ListContainer';
@@ -8,12 +8,12 @@ import Colors from '../constants/Colors';
 
 const inventoryRef = firebase.database().ref('inventory');
 
-export default class InventoryScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
+export default class InventoryScreen extends React.Component<any, any> {
+  static navigationOptions = ({ navigation }: any) => {
     return {
       title: 'Inventory',
       headerRight: (
-        <Icon.Ionicons
+        <Ionicons
           name='ios-create-outline'
           size={30}
           color={Colors.tintColor}
@@ -26,8 +26,8 @@ export default class InventoryScreen extends React.Component {
     };
   };
 
-  constructor() {
-    super();
+  constructor(props: any) {
+    super(props);
     this.state = {
       items: [],
     }

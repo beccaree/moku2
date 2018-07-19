@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyleSheet, View, Button, Text, TextInput } from 'react-native';
 
-export default class ItemFormScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
+export default class ItemFormScreen extends React.Component<any, any> {
+  static navigationOptions = ({ navigation }: any) => {
     return {
       title: navigation.getParam('pageTitle', 'Item'),
     };
   };
 
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.state = props.navigation.getParam('item', {});
   }

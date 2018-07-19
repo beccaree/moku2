@@ -18,7 +18,7 @@ const InventoryStack = createStackNavigator({
 
 InventoryStack.navigationOptions = {
   tabBarLabel: 'Inventory',
-  tabBarIcon: ({ focused }) => (
+  tabBarIcon: ({ focused }: any) => (
     <TabBarIcon
       focused={focused}
       name={
@@ -36,7 +36,7 @@ const SellStack = createStackNavigator({
 
 SellStack.navigationOptions = {
   tabBarLabel: 'Sell',
-  tabBarIcon: ({ focused }) => (
+  tabBarIcon: ({ focused }: any) => (
     <TabBarIcon
       focused={focused}
       name={Platform.OS === 'ios' ? `ios-cart${focused ? '' : '-outline'}` : 'md-cart'}
@@ -50,7 +50,7 @@ const SoldStack = createStackNavigator({
 
 SoldStack.navigationOptions = {
   tabBarLabel: 'Sold',
-  tabBarIcon: ({ focused }) => (
+  tabBarIcon: ({ focused }: any) => (
     <TabBarIcon
       focused={focused}
       name={Platform.OS === 'ios' ? `ios-paper${focused ? '' : '-outline'}` : 'md-paper'}

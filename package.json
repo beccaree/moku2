@@ -8,15 +8,25 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@expo/samples": "2.1.1",
+    "@types/expo": "^27.0.6",
+    "@types/expo__vector-icons": "^6.2.2",
+    "@types/react-navigation": "^2.0.11",
+    "@types/react-test-renderer": "^16.0.1",
+    "exp": "^55.0.5",
     "expo": "^28.0.0",
     "firebase": "^5.2.0",
     "jshint": "^2.9.5",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-28.0.0.tar.gz",
+    "react-native-scripts": "^1.14.0",
+    "react-native-typescript-transformer": "^1.2.10",
     "react-navigation": "2.3.1"
   },
   "devDependencies": {
-    "jest-expo": "^28.0.0"
+    "@types/react": "^16.4.6",
+    "@types/react-native": "^0.56.3",
+    "jest-expo": "^28.0.0",
+    "tslint": "^5.11.0",
+    "typescript": "^2.9.2"
   }
 }

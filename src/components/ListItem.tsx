@@ -2,8 +2,13 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 import Colors from '../constants/Colors'; 
+import { Item } from '../domain/types';
 
-export default class TabBarIcon extends React.Component {
+type Props = {
+  item: Item,
+};
+
+export default class TabBarIcon extends React.Component<Props, any> {
   renderStockAndPriceRow() {
     return (
       <View style={styles.stockPriceRow}>
