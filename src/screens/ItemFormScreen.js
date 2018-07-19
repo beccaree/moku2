@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, ScrollView, View, Button, Text, TextInput } from 'react-native';
+import { StyleSheet, ScrollView, View, Button, Text, TextInput, Image } from 'react-native';
+import { ImagePicker, Permissions } from 'expo';
 
 import Colors from '../constants/Colors';
 
@@ -7,24 +8,60 @@ export default class ItemFormScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.getParam('pageTitle', 'Item'),
+      headerRight: (
+        // () => {} is ugly but it stops warning of undefined onPress attribute
+        <Button title='Save' onPress={navigation.getParam('saveItem', () => {})} />
+      )
     };
   };
 
   constructor(props) {
     super(props);
     this.state = props.navigation.getParam('item', {});
+
+    props.navigation.setParams({ saveItem: this.onSaveItem });
   }
 
-  onPickImagePressed() {
-    // TODO: Do stuff
+  onSaveItem() {
+    alert('Save! (Not really hah.)')
+    // check required fields
+
+    // save item to firebase
+
+    // go back to inventory screen
+  }
+
+  onPickImagePressed = async () => {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+
+    console.log(this.state);
+
+    if(status === 'granted') {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true,
+        aspect: [1, 1],
+      });
+
+      if(!result.cancelled) {
+        this.setState({ imageUrl: result.uri });
+      }
+    }
   }
 
   render() {
     return (
       <ScrollView style={styles.container}>
-        <View style={styles.placeholderImg} />
+        {
+          this.state.imageUrl === undefined || this.state.imageUrl === ""
+            ? <View style={styles.placeholderImg} />
+            : <Image source={{ uri: this.state.imageUrl }} style={styles.image} />
+        }
+
         <Button
-          title='Choose picture'
+          title={this.state.imageUrl === undefined || this.state.imageUrl === ""
+            ? 'Choose picture'
+            : 'Pick another'
+          }
           onPress={this.onPickImagePressed}
         />
 
@@ -85,6 +122,11 @@ const styles = StyleSheet.create({
     width: 140,
     height: 140,
     backgroundColor: 'powderblue'
+  },
+  image: {
+    alignSelf: 'center',
+    width: 140,
+    height: 140,
   },
   textInput: {
     height: 40,
