@@ -12,4 +12,5 @@ export default {
   noticeBackground: tintColor,
   noticeText: '#fff',
   subtitleText: 'darkgrey',
+  separatorLines: 'lightgrey',
 };

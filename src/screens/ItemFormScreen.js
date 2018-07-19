@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Button, Text, TextInput } from 'react-native';
+import { StyleSheet, ScrollView, View, Button, Text, TextInput } from 'react-native';
+
+import Colors from '../constants/Colors';
 
 export default class ItemFormScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -19,12 +21,13 @@ export default class ItemFormScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.placeholderImg} />
         <Button
           title='Choose picture'
           onPress={this.onPickImagePressed}
         />
+
         <TextInput
           style={styles.textInput}
           placeholder='Item Name'
@@ -33,7 +36,40 @@ export default class ItemFormScreen extends React.Component {
             title: text,
           })}
         />
-      </View>
+        <View style={styles.separator} />
+
+        <TextInput
+          style={styles.textInput}
+          placeholder='Description'
+          clearButtonMode='while-editing'
+          onChangeText={(text) => this.setState({
+            description: text,
+          })}
+        />
+        <View style={styles.separator} />
+
+        <TextInput
+          style={styles.textInput}
+          placeholder='Price'
+          clearButtonMode='while-editing'
+          keyboardType='numeric'
+          onChangeText={(text) => this.setState({
+            price: text,
+          })}
+        />
+        <View style={styles.separator} />
+
+        <TextInput
+          style={styles.textInput}
+          placeholder='Stock'
+          clearButtonMode='while-editing'
+          keyboardType='numeric'
+          onChangeText={(text) => this.setState({
+            stock: text,
+          })}
+        />
+        <View style={styles.separator} />
+      </ScrollView>
     );
   }
 }
@@ -52,7 +88,13 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 40,
-    margin: 20,
+    marginHorizontal: 20,
+    marginVertical: 10,
     alignSelf: 'stretch',
-  }
+  },
+  separator: {
+    height: 1,
+    backgroundColor: Colors.separatorLines,
+    alignSelf: 'stretch',
+  },
 });
