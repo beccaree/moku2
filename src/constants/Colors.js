@@ -13,4 +13,5 @@ export default {
   noticeText: '#fff',
   subtitleText: 'darkgrey',
   separatorLines: 'lightgrey',
+  lightRedText: '#ff6666',
 };

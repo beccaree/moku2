@@ -26,51 +26,51 @@ export default class ItemFormScreen extends React.Component {
   }
 
   onSaveItem = () => {
-    // check required fields
+    const isEmptyTitle = this.state.title === undefined || this.state.title === "";
+    if (!isEmptyTitle) {
+      const item = this.state;
+      inventoryRef.push(item);
 
-    // save item to firebase
-    const item = this.state;
-    inventoryRef.push(item);
-
-    // go back to inventory screen
-    this.props.navigation.goBack();
+      this.props.navigation.goBack();
+    }
   }
 
   onPickImagePressed = async () => {
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
 
-    if(status === 'granted') {
+    if (status === 'granted') {
       const result = await ImagePicker.launchImageLibraryAsync({
         allowsEditing: true,
         aspect: [1, 1],
       });
 
-      if(!result.cancelled) {
+      if (!result.cancelled) {
         this.setState({ imageUrl: result.uri });
       }
     }
   }
 
   render() {
+    const isEmptyTitle = this.state.title === "";
+    const isEmptyImage = this.state.imageUrl === undefined || this.state.imageUrl === "";
+
     return (
       <ScrollView style={styles.container}>
         {
-          this.state.imageUrl === undefined || this.state.imageUrl === ""
+          isEmptyImage
             ? <View style={styles.placeholderImg} />
             : <Image source={{ uri: this.state.imageUrl }} style={styles.image} />
         }
 
         <Button
-          title={this.state.imageUrl === undefined || this.state.imageUrl === ""
-            ? 'Choose picture'
-            : 'Pick another'
-          }
+          title={isEmptyImage ? 'Choose picture' : 'Pick another'}
           onPress={this.onPickImagePressed}
         />
 
         <TextInput
           style={styles.textInput}
-          placeholder='Item Name'
+          placeholder={isEmptyTitle ? 'Please specify an item name' : 'Item Name*'}
+          placeholderTextColor={isEmptyTitle ? Colors.lightRedText : null}
           clearButtonMode='while-editing'
           onChangeText={(text) => this.setState({
             title: text,
