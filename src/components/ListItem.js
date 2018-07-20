@@ -1,5 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image
+} from 'react-native';
 
 import Colors from '../constants/Colors'; 
 
@@ -24,10 +29,19 @@ export default class TabBarIcon extends React.Component {
   }
 
   render() {
+    const isEmptyImage = this.props.item.imageUrl === undefined || this.props.item.imageUrl === "";
+
     return (
-      <View style={styles.item}>
-        <View style={styles.placeholderImg} />
-        {this.renderDetails()}
+      <View>
+        <View style={styles.item}>
+          {
+            isEmptyImage
+              ? <View style={styles.placeholderImg} />
+              : <Image source={{ uri: this.props.item.imageUrl }} style={styles.image} />
+          }
+          {this.renderDetails()}
+        </View>
+        <View style={styles.separator} />
       </View>
     )
   }
@@ -37,13 +51,17 @@ const styles = StyleSheet.create({
   item: {
     flex: 1,
     flexDirection: 'row',
-    paddingTop: 20,
+    paddingTop: 10,
     paddingHorizontal: 20,
+  },
+  image: {
+    width: 60,
+    height: 60,
   },
   placeholderImg: {
     width: 60,
     height: 60,
-    backgroundColor: 'powderblue'
+    backgroundColor: Colors.imagePlaceholder,
   },
   details: {
     flex: 1,
@@ -61,5 +79,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingTop: 10,
     justifyContent: 'space-between',
+  },
+  separator: {
+    height: 1,
+    marginTop: 10,
+    backgroundColor: Colors.separatorLines,
+    alignSelf: 'stretch',
   },
 });

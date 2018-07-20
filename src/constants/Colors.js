@@ -13,5 +13,6 @@ export default {
   noticeText: '#fff',
   subtitleText: 'darkgrey',
   separatorLines: 'lightgrey',
+  imagePlaceholder: 'lightgrey',
   lightRedText: '#ff6666',
 };

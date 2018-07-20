@@ -1,5 +1,13 @@
 import React from 'react';
-import { StyleSheet, ScrollView, View, Button, Text, TextInput, Image } from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  View,
+  Button,
+  Text,
+  TextInput,
+  Image
+} from 'react-native';
 import { ImagePicker, Permissions } from 'expo';
 
 import Colors from '../constants/Colors';
@@ -39,10 +47,7 @@ export default class ItemFormScreen extends React.Component {
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
 
     if (status === 'granted') {
-      const result = await ImagePicker.launchImageLibraryAsync({
-        allowsEditing: true,
-        aspect: [1, 1],
-      });
+      const result = await ImagePicker.launchImageLibraryAsync();
 
       if (!result.cancelled) {
         this.setState({ imageUrl: result.uri });
@@ -50,22 +55,34 @@ export default class ItemFormScreen extends React.Component {
     }
   }
 
-  render() {
-    const isEmptyTitle = this.state.title === "";
+  renderImagePicker() {
     const isEmptyImage = this.state.imageUrl === undefined || this.state.imageUrl === "";
 
     return (
-      <ScrollView style={styles.container}>
+      <View>
         {
           isEmptyImage
             ? <View style={styles.placeholderImg} />
             : <Image source={{ uri: this.state.imageUrl }} style={styles.image} />
         }
-
         <Button
           title={isEmptyImage ? 'Choose picture' : 'Pick another'}
           onPress={this.onPickImagePressed}
         />
+      </View>
+    )
+  }
+
+  renderSeparator() {
+    return (<View style={styles.separator} />);
+  }
+
+  render() {
+    const isEmptyTitle = this.state.title === "";
+    
+    return (
+      <ScrollView style={styles.container}>
+        {this.renderImagePicker()}
 
         <TextInput
           style={styles.textInput}
@@ -76,7 +93,7 @@ export default class ItemFormScreen extends React.Component {
             title: text,
           })}
         />
-        <View style={styles.separator} />
+        {this.renderSeparator()}
 
         <TextInput
           style={styles.textInput}
@@ -86,7 +103,7 @@ export default class ItemFormScreen extends React.Component {
             description: text,
           })}
         />
-        <View style={styles.separator} />
+        {this.renderSeparator()}
 
         <TextInput
           style={styles.textInput}
@@ -97,7 +114,7 @@ export default class ItemFormScreen extends React.Component {
             price: text,
           })}
         />
-        <View style={styles.separator} />
+        {this.renderSeparator()}
 
         <TextInput
           style={styles.textInput}
@@ -108,7 +125,7 @@ export default class ItemFormScreen extends React.Component {
             stock: text,
           })}
         />
-        <View style={styles.separator} />
+        {this.renderSeparator()}
       </ScrollView>
     );
   }
@@ -124,7 +141,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: 150,
     height: 150,
-    backgroundColor: 'powderblue'
+    backgroundColor: Colors.imagePlaceholder,
   },
   image: {
     alignSelf: 'center',
