@@ -3,6 +3,9 @@ import { StyleSheet, ScrollView, View, Button, Text, TextInput, Image } from 're
 import { ImagePicker, Permissions } from 'expo';
 
 import Colors from '../constants/Colors';
+import firebase from '../helpers/Firebase';
+
+const inventoryRef = firebase.database().ref('inventory');
 
 export default class ItemFormScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -22,19 +25,19 @@ export default class ItemFormScreen extends React.Component {
     props.navigation.setParams({ saveItem: this.onSaveItem });
   }
 
-  onSaveItem() {
-    alert('Save! (Not really hah.)')
+  onSaveItem = () => {
     // check required fields
 
     // save item to firebase
+    const item = this.state;
+    inventoryRef.push(item);
 
     // go back to inventory screen
+    this.props.navigation.goBack();
   }
 
   onPickImagePressed = async () => {
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-
-    console.log(this.state);
 
     if(status === 'granted') {
       const result = await ImagePicker.launchImageLibraryAsync({
@@ -119,14 +122,14 @@ const styles = StyleSheet.create({
   },
   placeholderImg: {
     alignSelf: 'center',
-    width: 140,
-    height: 140,
+    width: 150,
+    height: 150,
     backgroundColor: 'powderblue'
   },
   image: {
     alignSelf: 'center',
-    width: 140,
-    height: 140,
+    width: 150,
+    height: 150,
   },
   textInput: {
     height: 40,
