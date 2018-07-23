@@ -1,9 +1,9 @@
 import React from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView } from 'react-native';
 
 import ListItem from '../components/ListItem';
 
-export default class ListContainer extends React.Component {
+export default class InventoryListContainer extends React.Component {
   render() {
     return (
       <ScrollView>

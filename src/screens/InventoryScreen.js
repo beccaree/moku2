@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Icon } from 'expo';
 
 import firebase from '../helpers/Firebase'
-import ListContainer from '../containers/ListContainer';
+import InventoryListContainer from '../containers/InventoryListContainer';
 import Colors from '../constants/Colors';
 
 const inventoryRef = firebase.database().ref('inventory');
@@ -56,7 +56,7 @@ export default class InventoryScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ListContainer items={this.state.items} />
+        <InventoryListContainer items={this.state.items} />
       </View>
     );
   }

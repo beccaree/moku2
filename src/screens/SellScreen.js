@@ -8,7 +8,10 @@ import {
 } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
-import ListContainer from '../containers/ListContainer';
+import firebase from '../helpers/Firebase';
+import SellListContainer from '../containers/SellListContainer';
+
+const inventoryRef = firebase.database().ref('inventory');
 
 export default class SellScreen extends React.Component {
   static navigationOptions = {
@@ -19,7 +22,30 @@ export default class SellScreen extends React.Component {
     super();
     this.state = {
       items: [],
+      selected: [],
     }
+  }
+
+  componentDidMount() {
+    inventoryRef.on('value', (snapshot) => {
+      let items = snapshot.val();
+      let newState = [];
+      for (let item in items) {
+        if (items[item].stock !== 0) {
+          newState.push({
+            id: item,
+            title: items[item].title,
+            description: items[item].description,
+            price: items[item].price,
+            stock: items[item].stock,
+            imageUrl: items[item].imageUrl,
+          });
+        }
+    }
+      this.setState({
+        items: newState,
+      });
+    });
   }
 
   onCheckoutPressed() {
@@ -29,7 +55,7 @@ export default class SellScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ListContainer items={this.state.items} />
+        <SellListContainer items={this.state.items} />
 
         <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>2 items selected</Text>

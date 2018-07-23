@@ -111,7 +111,7 @@ export default class ItemFormScreen extends React.Component {
           clearButtonMode='while-editing'
           keyboardType='numeric'
           onChangeText={(text) => this.setState({
-            price: text,
+            price: parseFloat(text),
           })}
         />
         {this.renderSeparator()}
@@ -122,7 +122,7 @@ export default class ItemFormScreen extends React.Component {
           clearButtonMode='while-editing'
           keyboardType='numeric'
           onChangeText={(text) => this.setState({
-            stock: text,
+            stock: parseInt(text, 10),
           })}
         />
         {this.renderSeparator()}
