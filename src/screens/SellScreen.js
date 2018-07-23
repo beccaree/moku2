@@ -48,6 +48,11 @@ export default class SellScreen extends React.Component {
     });
   }
 
+  onItemSelected(itemId) {
+    // push item id into selected list
+    console.log(itemId); // works!!! <-----start here
+  }
+
   onCheckoutPressed() {
     // TODO: Do stuff
   }
@@ -55,7 +60,7 @@ export default class SellScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <SellListContainer items={this.state.items} />
+        <SellListContainer items={this.state.items} onItemSelected={this.onItemSelected} />
 
         <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>2 items selected</Text>

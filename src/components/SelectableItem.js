@@ -18,14 +18,14 @@ export default class SelectableItemContainer extends React.Component {
       isSelected: !this.state.isSelected,
     })
 
-    // TODO call listener from parent
+    this.props.onItemSelected(this.props.item.id);
   }
 
   render() {
     return (
       <TouchableHighlight 
         onPress={this.onItemPressed}
-        underlayColor='#efffff' // lighter cyan 
+        underlayColor='#ededed'
         style={ this.state.isSelected ? styles.selected : null }
       >
         <ListItem item={this.props.item} />
@@ -36,6 +36,6 @@ export default class SelectableItemContainer extends React.Component {
 
 const styles = StyleSheet.create({
   selected: {
-    backgroundColor: 'lightcyan', // light cyan
+    backgroundColor: 'lightcyan',
   }
 });
