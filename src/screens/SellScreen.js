@@ -48,9 +48,19 @@ export default class SellScreen extends React.Component {
     });
   }
 
-  onItemSelected(itemId) {
-    // push item id into selected list
-    console.log(itemId); // works!!! <-----start here
+  onItemSelected = (itemId) => {
+    const selected = this.state.selected;
+    let result = [];
+
+    if (selected.includes(itemId)) {
+      result = selected.filter(id => id !== itemId);
+    } else {
+      result = [...selected, itemId];
+    }
+
+    this.setState({
+      selected: result
+    });
   }
 
   onCheckoutPressed() {
@@ -63,7 +73,9 @@ export default class SellScreen extends React.Component {
         <SellListContainer items={this.state.items} onItemSelected={this.onItemSelected} />
 
         <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>2 items selected</Text>
+          <Text style={styles.tabBarInfoText}>
+            {this.state.selected.length} item{this.state.selected.length === 1? '' : 's'} selected
+          </Text>
           <Button title='Checkout' onPress={this.onCheckoutPressed} />
         </View> 
       </View>
