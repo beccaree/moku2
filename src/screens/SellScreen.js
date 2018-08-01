@@ -72,11 +72,11 @@ export default class SellScreen extends React.Component {
       <View style={styles.container}>
         <SellListContainer items={this.state.items} onItemSelected={this.onItemSelected} />
 
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>
-            {this.state.selected.length} item{this.state.selected.length === 1? '' : 's'} selected
+        <View style={styles.checkoutInfoContainer}>
+          <Text style={styles.checkoutInfoText}>
+            {this.state.selected.length} item{this.state.selected.length === 1? '' : 's'} selected:
           </Text>
-          <Button title='Checkout' onPress={this.onCheckoutPressed} />
+          <Button title="Checkout" onPress={this.onCheckoutPressed} disabled={ !this.state.selected.length > 0 } />
         </View> 
       </View>
     );
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  tabBarInfoContainer: {
+  checkoutInfoContainer: {
     position: 'absolute',
     bottom: 0,
     left: 0,
@@ -104,13 +104,16 @@ const styles = StyleSheet.create({
         elevation: 20,
       },
     }),
+    flex: 1, 
+    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#fbfbfb',
     paddingVertical: 20,
   },
-  tabBarInfoText: {
-    fontSize: 17,
+  checkoutInfoText: {
+    fontSize: 15,
     color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
+    marginRight: 10,
   },
 });
