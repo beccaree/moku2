@@ -11,4 +11,8 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+export const InventoryRef = firebase.database().ref('inventory');
+
+export const ItemRef = (itemId) => firebase.database().ref(`inventory/${itemId}`);
+
 export default firebase;

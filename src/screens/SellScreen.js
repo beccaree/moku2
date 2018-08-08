@@ -8,10 +8,8 @@ import {
 } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
-import firebase from '../helpers/Firebase';
+import { InventoryRef } from '../helpers/Firebase';
 import SellListContainer from '../containers/SellListContainer';
-
-const inventoryRef = firebase.database().ref('inventory');
 
 export default class SellScreen extends React.Component {
   static navigationOptions = {
@@ -27,7 +25,7 @@ export default class SellScreen extends React.Component {
   }
 
   componentDidMount() {
-    inventoryRef.on('value', (snapshot) => {
+    InventoryRef.on('value', (snapshot) => {
       let items = snapshot.val();
       let newState = [];
       for (let item in items) {
@@ -63,8 +61,10 @@ export default class SellScreen extends React.Component {
     });
   }
 
-  onCheckoutPressed() {
-    // TODO: Do stuff
+  onCheckoutPressed = () => {
+    this.props.navigation.navigate('Checkout', {
+      selectedItems: this.state.selected,
+    })
   }
 
   render() {

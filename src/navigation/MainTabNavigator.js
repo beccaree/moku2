@@ -6,6 +6,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import InventoryScreen from '../screens/InventoryScreen';
 import ItemFormScreen from '../screens/ItemFormScreen';
 import SellScreen from '../screens/SellScreen';
+import CheckoutScreen from '../screens/CheckoutScreen'
 import SoldScreen from '../screens/SoldScreen';
 
 const InventoryStack = createStackNavigator({
@@ -32,6 +33,7 @@ InventoryStack.navigationOptions = {
 
 const SellStack = createStackNavigator({
   Sell: SellScreen,
+  Checkout: CheckoutScreen,
 });
 
 SellStack.navigationOptions = {

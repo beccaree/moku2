@@ -11,9 +11,7 @@ import {
 import { ImagePicker, Permissions } from 'expo';
 
 import Colors from '../constants/Colors';
-import firebase from '../helpers/Firebase';
-
-const inventoryRef = firebase.database().ref('inventory');
+import { InventoryRef } from '../helpers/Firebase';
 
 export default class ItemFormScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -37,7 +35,7 @@ export default class ItemFormScreen extends React.Component {
     const isEmptyTitle = this.state.title === undefined || this.state.title === "";
     if (!isEmptyTitle) {
       const item = this.state;
-      inventoryRef.push(item);
+      InventoryRef.push(item);
 
       this.props.navigation.goBack();
     }

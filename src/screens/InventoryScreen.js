@@ -2,11 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Icon } from 'expo';
 
-import firebase from '../helpers/Firebase'
+import { InventoryRef } from '../helpers/Firebase'
 import InventoryListContainer from '../containers/InventoryListContainer';
 import Colors from '../constants/Colors';
-
-const inventoryRef = firebase.database().ref('inventory');
 
 export default class InventoryScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -34,7 +32,7 @@ export default class InventoryScreen extends React.Component {
   }
 
   componentDidMount() {
-    inventoryRef.on('value', (snapshot) => {
+    InventoryRef.on('value', (snapshot) => {
       let items = snapshot.val();
       let newState = [];
       for (let item in items) {

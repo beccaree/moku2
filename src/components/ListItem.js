@@ -3,12 +3,12 @@ import {
   StyleSheet,
   View,
   Text,
-  Image
+  Image,
 } from 'react-native';
 
 import Colors from '../constants/Colors'; 
 
-export default class TabBarIcon extends React.Component {
+export default class ListItem extends React.Component {
   renderStockAndPriceRow() {
     return (
       <View style={styles.stockPriceRow}>
